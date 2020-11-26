@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
 import './App.scss';
-import { Switch, Link, Route } from 'react-router-dom';
 
-export const App = () => (
-  <div>
-    React starter pack
-    <div>
-      <nav className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/users">Users</Link>
-      </nav>
+import { MainPage } from './MainPage';
+import { DetailsPage } from './DetailsPage';
+
+export const App = () => {
+  const [detailsForCity, setDetailsForCity] = useState('');
+
+  const getDetailsForCity = (city) => {
+    setDetailsForCity(city);
+
+    // eslint-disable-next-line
+    console.log(city);
+  };
+
+  return (
+    <div className="app">
+      <h1 className="app_title">
+        Weather: Anywhere in UA
+      </h1>
 
       <Switch>
-        <Route path="/users">
-          <div>Users page</div>
+        <Route path="/details/:city">
+          <DetailsPage city={detailsForCity} />
         </Route>
-        <Route path="/">
-          <div>Home page</div>
+
+        <Route path="/" exact>
+          <MainPage getDetailsForCity={getDetailsForCity} />
         </Route>
       </Switch>
     </div>
-  </div>
-);
+  );
+};
