@@ -10,4 +10,4 @@ To use this template click `Use this template`
 
 `React router` - available to use dynamic routes to switch between pages
 
-[DEMO LINK](https://suessophie.github.io/weather/)
+[DEMO LINK](https://suessophie.github.io/Weather/)
