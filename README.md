@@ -9,3 +9,5 @@ To use this template click `Use this template`
 `SCSS Preprocessor` - available to write your styles with modern style language
 
 `React router` - available to use dynamic routes to switch between pages
+
+[DEMO LINK](https://suessophie.github.io/weather/)
