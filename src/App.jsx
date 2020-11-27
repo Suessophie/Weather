@@ -17,7 +17,7 @@ export const App = () => {
 
   return (
     <div className="app">
-      <h1 className="app_title">
+      <h1 className="app__title">
         Weather: Anywhere in UA
       </h1>
 

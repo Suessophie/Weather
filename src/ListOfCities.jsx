@@ -9,7 +9,7 @@ export const ListOfCities = ({
   refreshDataForCity,
   getDetailsForCity,
 }) => (
-  <>
+  <div className="listOfCities">
     {listOfCities.map(city => (
       <ItemOfCities
         key={city.id}
@@ -19,7 +19,7 @@ export const ListOfCities = ({
         getDetailsForCity={getDetailsForCity}
       />
     ))}
-  </>
+  </div>
 );
 
 ListOfCities.propTypes = {

@@ -2,20 +2,42 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const FormToAddCity = ({
-  handleSubmit,
-  addedCity,
+  hasErrorOnInput,
+  alreadyAdded,
   enteredCity,
+  handleSubmit,
+  valueOfEnteredCity,
 }) => (
   <form
+    className="form"
     onSubmit={handleSubmit}
   >
+    <label
+      className="form__label"
+      htmlFor="city"
+    >
+      To find new city
+    </label>
     <input
+      className="form__input"
+      id="city"
       name="city"
-      value={addedCity}
+      value={valueOfEnteredCity}
       onChange={enteredCity}
-      placeholder="City"
+      placeholder="Name of the city"
     />
+    {hasErrorOnInput && (
+      <div className="form__error">
+        Please, enter correct city
+      </div>
+    )}
+    {alreadyAdded && (
+      <div className="form__error">
+        Sorry, this city already added
+      </div>
+    )}
     <button
+      className="form__button"
       type="submit"
     >
       Find
@@ -24,7 +46,9 @@ export const FormToAddCity = ({
 );
 
 FormToAddCity.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  addedCity: PropTypes.string.isRequired,
+  hasErrorOnInput: PropTypes.bool.isRequired,
+  alreadyAdded: PropTypes.bool.isRequired,
   enteredCity: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  valueOfEnteredCity: PropTypes.func.isRequired,
 };

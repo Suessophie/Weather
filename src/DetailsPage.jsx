@@ -18,41 +18,60 @@ export const DetailsPage = ({ city }) => {
   console.log(detailsOfWeather);
 
   return (
-    <div>
+    <div className="detailsPage">
       {detailsOfWeather && (
-        <>
-          <h2>{detailsOfWeather.name}</h2>
-          <div>
-            {detailsOfWeather.weather[0].main}
+        <section className="detailsPage__card">
+          <div className="detailsPage__main">
+            <h2>{detailsOfWeather.name}</h2>
+            <div>
+              {detailsOfWeather.weather[0].main}
+            </div>
+            <div>
+              {Math.round(detailsOfWeather.main.temp - 273.15)}
+              &deg;C
+            </div>
           </div>
-          <div>
-            {`Temperature : ${Math.round(detailsOfWeather.main.temp - 273.15)}`}
+          <div className="detailsPage__details">
+            <div className="detailsPage__item">
+              {`Feels: ${Math.round(
+                detailsOfWeather.main.feels_like - 273.15,
+              )}`}
+              &deg;C
+            </div>
+            <div className="detailsPage__item">
+              {`Min temp: ${Math.round(
+                detailsOfWeather.main.temp_min - 273.15,
+              )}`}
+              &deg;C
+            </div>
+            <div className="detailsPage__item">
+              {`Max temp: ${Math.round(
+                detailsOfWeather.main.temp_max - 273.15,
+              )}`}
+              &deg;C
+            </div>
+            <div className="detailsPage__item">
+              {`Wind: ${detailsOfWeather.wind.speed}m/s`}
+            </div>
+            <div className="detailsPage__item">
+              {`Visibility: ${detailsOfWeather.visibility / 1000}km`}
+            </div>
+            <div className="detailsPage__item">
+              {`Humidity: ${detailsOfWeather.main.humidity}%`}
+            </div>
+            <div className="detailsPage__item">
+              {`Pressure: ${detailsOfWeather.main.pressure}gPa`}
+            </div>
+            <div className="detailsPage__item">
+              {`Description: ${detailsOfWeather.weather[0].description}`}
+            </div>
           </div>
-          <div>
-            {`Feels like: ${Math.round(
-              detailsOfWeather.main.feels_like - 273.15,
-            )}`}
-          </div>
-          <div>
-            {`Min temp: ${Math.round(
-              detailsOfWeather.main.temp_min - 273.15,
-            )}`}
-          </div>
-          <div>
-            {`Max temp: ${Math.round(
-              detailsOfWeather.main.temp_max - 273.15,
-            )}`}
-          </div>
-          <div>
-            {`Wind: ${detailsOfWeather.wind.speed} m/s`}
-          </div>
-        </>
+          <Link
+            className="detailsPage__button"
+            to="/"
+          />
+        </section>
       )}
-      <Link
-        to="/"
-      >
-        close
-      </Link>
     </div>
   );
 };

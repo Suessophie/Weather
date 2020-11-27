@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ListOfCities } from './ListOfCities';
@@ -6,29 +6,58 @@ import { FormToAddCity } from './FormToAddCity';
 
 import { getWeatherForCity } from './api/api';
 
-export const MainPage = ({ getDetailsForCity }) => {
-  const [listOfCities, setListOfCities] = useState([]);
-  const [addedCity, setAddedCity] = useState('');
-  const [city, setCity] = useState('Kharkiv');
+const useLocalStorage = (key, initialValue) => {
+  const [value, setValue] = useState(
+    JSON.parse(localStorage.getItem(key)) || initialValue,
+  );
 
-  useEffect(() => {
-    getWeatherForCity(city)
-      .then(cityWithWeather => setListOfCities(
-        [...listOfCities, cityWithWeather],
-      ));
-  }, [city]);
+  const saveValue = (newValue) => {
+    setValue(newValue);
+    localStorage.setItem(key, JSON.stringify(newValue));
+  };
+
+  return [value, saveValue];
+};
+
+export const MainPage = ({ getDetailsForCity }) => {
+  const [listOfCities, setListOfCities] = useLocalStorage('cities', []);
+  const [hasErrorOnInput, setHasErrorOnInput] = useState(false);
+  const [alreadyAdded, setAlreadyAdded] = useState(false);
+  const [valueOfEnteredCity, setValueOfEnteredCity] = useState('');
 
   const enteredCity = (event) => {
     const { value } = event.target;
 
-    setAddedCity(value);
+    if (value !== valueOfEnteredCity) {
+      setHasErrorOnInput(false);
+      setAlreadyAdded(false);
+    }
+
+    setValueOfEnteredCity(value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    setCity(addedCity);
-    setAddedCity('');
+    if (!listOfCities.some(
+      itemOfCities => itemOfCities.name === valueOfEnteredCity,
+    )) {
+      addCity(valueOfEnteredCity);
+      setValueOfEnteredCity('');
+    } else {
+      setAlreadyAdded(true);
+    }
+  };
+
+  const addCity = (city) => {
+    getWeatherForCity(city)
+      .then((weather) => {
+        if (weather.id) {
+          setListOfCities([...listOfCities, weather]);
+        } else {
+          setHasErrorOnInput(true);
+        }
+      });
   };
 
   const deleteCityFromList = (id) => {
@@ -54,21 +83,25 @@ export const MainPage = ({ getDetailsForCity }) => {
   };
 
   return (
-    <>
-      {listOfCities.length && (
+    <div className="mainPage">
+      {listOfCities.length ? (
         <ListOfCities
           listOfCities={listOfCities}
           deleteCityFromList={deleteCityFromList}
           refreshDataForCity={refreshDataForCity}
           getDetailsForCity={getDetailsForCity}
         />
+      ) : (
+        <p>Please, enter name of the city</p>
       )}
       <FormToAddCity
-        handleSubmit={handleSubmit}
-        addedCity={addedCity}
+        hasErrorOnInput={hasErrorOnInput}
+        alreadyAdded={alreadyAdded}
         enteredCity={enteredCity}
+        handleSubmit={handleSubmit}
+        valueOfEnteredCity={valueOfEnteredCity}
       />
-    </>
+    </div>
   );
 };
 
