@@ -16,6 +16,6 @@ Used next technologies:
   
 To run the project:
  - fork this repository
- - git clone
+ - git clone [link]
  - npm inastall
  - npm start
