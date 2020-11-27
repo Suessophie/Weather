@@ -1,13 +1,15 @@
-# React Starter Pack
-
-To use this template click `Use this template`
-
-### Available Scripts
-
-`Deploy` - available to deploy your application to gh-pages
-
-`SCSS Preprocessor` - available to write your styles with modern style language
-
-`React router` - available to use dynamic routes to switch between pages
+# Weather
 
 [DEMO LINK](https://suessophie.github.io/Weather/)
+
+Used next technologies:
+  - HTML
+  - CSS
+  - Sass
+  - React
+  
+To run the project:
+ - Fork this repository
+ - git clone
+ - npm inastall
+ - npm start
