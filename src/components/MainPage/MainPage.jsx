@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { ListOfCities } from './ListOfCities';
-import { FormToAddCity } from './FormToAddCity';
+import { ListOfCities } from '../ListOfCities';
+import { FormToAddCity } from '../FormToAddCity';
 
-import { getWeatherForCity } from './api/api';
+import { getWeatherForCity } from '../../api/api';
+import './MainPage.scss';
 
 const useLocalStorage = (key, initialValue) => {
   const [value, setValue] = useState(

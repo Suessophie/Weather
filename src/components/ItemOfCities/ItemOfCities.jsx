@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import PropTypes from 'prop-types';
+import { CityShape } from '../../shapes/CityShape';
+
+import './ItemOfCities.scss';
 
 export const ItemOfCities = ({
   city,
@@ -44,16 +46,7 @@ export const ItemOfCities = ({
 );
 
 ItemOfCities.propTypes = {
-  city: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    main: PropTypes.shape({
-      temp: PropTypes.number.isRequired,
-    }).isRequired,
-    weather: PropTypes.arrayOf(PropTypes.shape({
-      main: PropTypes.string.isRequired,
-    }).isRequired).isRequired,
-  }).isRequired,
+  city: CityShape.isRequired,
   deleteCityFromList: PropTypes.func.isRequired,
   refreshDataForCity: PropTypes.func.isRequired,
   getDetailsForCity: PropTypes.func.isRequired,

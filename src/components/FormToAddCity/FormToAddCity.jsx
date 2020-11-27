@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './FormToAddCity.scss';
+
 export const FormToAddCity = ({
   hasErrorOnInput,
   alreadyAdded,
@@ -50,5 +52,5 @@ FormToAddCity.propTypes = {
   alreadyAdded: PropTypes.bool.isRequired,
   enteredCity: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  valueOfEnteredCity: PropTypes.func.isRequired,
+  valueOfEnteredCity: PropTypes.string.isRequired,
 };

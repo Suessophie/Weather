@@ -1,0 +1,42 @@
+.itemOfCities {
+  margin-right: 20px;
+  margin-bottom: 40px;
+
+  &__card {
+    display: block;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    color: #3D4067;
+    border-radius: 10px;
+    box-shadow: 0 15px 15px 0 rgba(0,0,0,.05);
+    text-decoration: none;
+    transition: 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__title {
+    padding: 20px 0 30px;
+    text-transform: uppercase;
+  }
+
+  &__button {
+    width: 60px;
+    height: 25px;
+    border: 1px solid #e4282f;
+    background-color: white;
+    color: #e4282f;
+    border-radius: 6px;
+    margin: 10px 5px;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #e4282f;
+      color: white;
+    }
+  }
+}
